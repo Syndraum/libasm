@@ -37,7 +37,7 @@ int	test_strcpy(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
-int	test_strcpy(int argc, char *argv[])
+int	test_strcmp(int argc, char *argv[])
 {
 	if (argc <= 3)
 	{
@@ -45,6 +45,7 @@ int	test_strcpy(int argc, char *argv[])
 		return (EXIT_SUCCESS);
 	}
 	printf("ft_strcmp\t|%d|\nstrcmp\t\t|%d|\n", ft_strcmp(argv[2], argv[3]), strcmp(argv[2],argv[3]));
+	return (EXIT_SUCCESS);
 }
 
 int main(int argc, char *argv[])
@@ -59,9 +60,7 @@ int main(int argc, char *argv[])
 	else if (strcmp(argv[1], "ft_strcpy") == 0)
 		test_strcpy(argc, argv);
 	else if (strcmp(argv[1], "ft_strcmp") == 0)
-	{
-		
-	}
+		test_strcmp(argc, argv);
 	else
 		printf("Error\nFunction unknow");
 	return(EXIT_SUCCESS);
