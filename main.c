@@ -9,6 +9,7 @@ char	*ft_strcpy(char * dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
 ssize_t ft_read(int fildes, void *buf, size_t nbyte);
+char	*ft_strdup(const char *s1);
 
 
 int	test_strlen(int argc, char *argv[])
@@ -105,6 +106,20 @@ int test_read(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
+int	test_strdup(int argc, char *argv[])
+{
+	if (argc <= 2)
+	{
+		printf("Error\nNeed argument\n");
+		return (EXIT_SUCCESS);
+	}
+	printf("strdup\t : %s\n", strdup(argv[2]));
+	printf("ft_strdup\t : %s\n", ft_strdup(argv[2]));
+	*(argv[2]) = '8';
+	printf("Modified arg\t: %s", argv[2]);
+	return (EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[])
 {
 	if (argc <= 1)
@@ -122,6 +137,8 @@ int main(int argc, char *argv[])
 		test_write(argc, argv);
 	else if (strcmp(argv[1], "ft_read") == 0)
 		test_read(argc, argv);
+	else if (strcmp(argv[1], "ft_strdup") == 0)
+		test_strdup(argc, argv);
 	else
 		printf("Error\nFunction unknow");
 	return(EXIT_SUCCESS);

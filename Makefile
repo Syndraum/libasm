@@ -1,10 +1,11 @@
-SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s
+SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 SRCC = main.c
 
 OBJS = ${SRCS:.s=.o}
 OBJC = ${SRCC:.c=.o}
 
-NAME = libasm.out
+NAME = libasm.a
+NAME_TEST = libasm.out
 
 RM	= rm -f
 
@@ -20,13 +21,17 @@ all:	${NAME}
 .c.o:
 	${CC} ${CFLAG} -c  $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS} ${OBJC}
-	${CC} -Wl,-no_pie -o ${NAME} ${OBJS} ${OBJC}
+${NAME}: ${OBJS}
+	ar rc ${NAME} ${OBJS}
+
+test:	${NAME} ${OBJC}
+	${CC} ${NAME} ${OBJC} -o ${NAME_TEST}
 
 clean :
 	${RM} ${OBJS} ${OBJC}
 
 fclean:	clean
 	${RM} ${NAME}
+	${RM} ${NAME_TEST}
 
 re: 	fclean all
