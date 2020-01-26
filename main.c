@@ -8,6 +8,7 @@ size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char * dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);
 ssize_t	ft_write(int fildes, const void *buf, size_t nbyte);
+ssize_t ft_read(int fildes, void *buf, size_t nbyte);
 
 
 int	test_strlen(int argc, char *argv[])
@@ -73,6 +74,37 @@ int test_write(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
+int test_read(int argc, char *argv[])
+{
+	int fd1;
+	int	fd2;
+	char *str1;
+	char *str2;
+
+	if (argc <= 4)
+	{
+		printf("Error\nNeed argument\n");
+		return (EXIT_SUCCESS);
+	}
+	if ((fd1 = atoi(argv[2])) == 3 || (fd2 = atoi(argv[2])) == 3)
+	{
+		fd1 = open("test_read.txt", O_RDONLY);
+		fd2 = open("test_read.txt", O_RDONLY);
+	}
+	else if (atoi(argv[2]) == 4)
+	{
+		fd1 = open("test_read.txt", O_WRONLY);
+		fd2 = open("test_read.txt", O_WRONLY);
+	}
+	str1 = strdup(argv[3]);
+	str2 = strdup(argv[3]);
+	printf("read\t : %s\t| ret = %zd\n", str1, read(fd1, str1, atoi(argv[4])));
+	printf("ft_read\t : %s\t| ret = %zd\n", str2, ft_read(fd2, str2, atoi(argv[4])));
+	free(str1);
+	free(str2);
+	return (EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[])
 {
 	if (argc <= 1)
@@ -88,6 +120,8 @@ int main(int argc, char *argv[])
 		test_strcmp(argc, argv);
 	else if (strcmp(argv[1], "ft_write") == 0)
 		test_write(argc, argv);
+	else if (strcmp(argv[1], "ft_read") == 0)
+		test_read(argc, argv);
 	else
 		printf("Error\nFunction unknow");
 	return(EXIT_SUCCESS);
