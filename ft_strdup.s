@@ -3,13 +3,15 @@ extern		_malloc
 extern		_ft_strlen
 extern		_ft_strcpy
 _ft_strdup:
-	mov		r14, rdi
+	push	rdi
 	call	_ft_strlen
 	inc		rax
 	mov		rdi, rax
 	call	_malloc
-	; mov		rdi, rax
-	; mov		rsi, r14
-	; call	_ft_strcpy
-	mov		rax, 0
+	cmp		rax, 0
+	je		.exit
+	mov		rdi, rax
+	pop		rsi
+	call	_ft_strcpy
+.exit:
 	ret

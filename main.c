@@ -38,6 +38,7 @@ int	test_strcpy(int argc, char *argv[])
 		return (EXIT_SUCCESS);
 	}
 	printf("ft_strcpy\t|%s|\nstrcpy\t\t|%s|\n", ft_strcpy(str1, argv[3]), strcpy(str2,argv[3]));
+	printf("src : %s\n", str1);
 	free(str1);
 	free(str2);
 	return (EXIT_SUCCESS);
@@ -57,6 +58,7 @@ int	test_strcmp(int argc, char *argv[])
 int test_write(int argc, char *argv[])
 {
 	int fd;
+	char * lol = NULL;
 
 	if (argc <= 4)
 	{
@@ -67,10 +69,10 @@ int test_write(int argc, char *argv[])
 		fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	printf("write\t : ");
 	fflush(stdout);
-	int ret_o = write(fd, argv[3], atoi(argv[4]));
+	int ret_o = write(fd, lol, atoi(argv[4]));
 	printf("\t| ret = %d\nft_write : ", ret_o);
 	fflush(stdout);
-	int ret_m = ft_write(fd, argv[3], atoi(argv[4]));
+	int ret_m = ft_write(fd, lol, atoi(argv[4]));
 	printf("\t| ret = %d\n", ret_m);
 	return (EXIT_SUCCESS);
 }
@@ -108,15 +110,22 @@ int test_read(int argc, char *argv[])
 
 int	test_strdup(int argc, char *argv[])
 {
+	char* str1;
+	char* str2;
+
 	if (argc <= 2)
 	{
 		printf("Error\nNeed argument\n");
 		return (EXIT_SUCCESS);
 	}
-	printf("strdup\t : %s\n", strdup(argv[2]));
-	printf("ft_strdup\t : %s\n", ft_strdup(argv[2]));
+	str1 = strdup(argv[2]);
+	str2 = strdup(argv[2]);
+	printf("strdup\t\t: %s\n", strdup(str1));
+	printf("ft_strdup\t: %s\n", ft_strdup(str2));
 	*(argv[2]) = '8';
-	printf("Modified arg\t: %s", argv[2]);
+	printf("Modified arg\t: %s", str2);
+	free(str1);
+	free(str2);
 	return (EXIT_SUCCESS);
 }
 
