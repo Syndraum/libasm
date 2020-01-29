@@ -27,7 +27,6 @@ _ft_list_sort:
 	mov		[r13], rsi
 .skip:		
 	mov		r13, [r13 + 8]
-	; cmp		r13, 0
 	jmp	.loops
 .end_loop:
 	dec		r12

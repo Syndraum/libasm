@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/29 21:59:54 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/29 22:35:03 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ int	test_list_sort(int argc, char *argv[])
 	while (++i < argc)
 		list_push_front(&list , argv[i]);
 	print_list(list);
-	// printf("pointer = %p\n", &ft_strcmp);
 	ft_list_sort(&list, ft_strcmp);
-	// printf("pointer = %p\n", ft_list_sort(&list, ft_strcmp));
 	print_list(list);
 	return (EXIT_SUCCESS);
 }
