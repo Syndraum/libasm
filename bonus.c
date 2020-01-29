@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/29 18:47:58 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:01:58 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,23 @@ int	test_list_push_front(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
+int	test_list_size(int argc, char *argv[])
+{
+	t_list *list = NULL;
+
+	if (argc <= 2)
+	{
+		printf("Error\nNeed argument\n");
+		return (EXIT_SUCCESS);
+	}
+	int i = 1;
+	while (++i < argc)
+		list_push_front(&list , argv[i]);
+	printf("list_size\t: %d\n", list_size(list));
+	printf("ft_list_size\t: %d\n", ft_list_size(list));
+	return (EXIT_SUCCESS);
+}
+
 int main(int argc, char *argv[])
 {
 	if (argc <= 1)
@@ -68,6 +85,8 @@ int main(int argc, char *argv[])
 		test_atoi_base(argc, argv);
 	else if (strcmp(argv[1], "list_push_front") == 0)
 		test_list_push_front(argc, argv);
+	else if (strcmp(argv[1], "list_size") == 0)
+		test_list_size(argc, argv);
 	else
 		printf("Error\nFunction unknow");
 	return(EXIT_SUCCESS);
