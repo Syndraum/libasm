@@ -1,5 +1,5 @@
 SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
-SRCB = ft_atoi_base_bonus.s
+SRCB = ft_atoi_base_bonus.s ft_strstr.s
 SRCC = main.c 
 SRCM = bonus.c ft_atoi_base.c
 

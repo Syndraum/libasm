@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/10 20:13:52 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/29 11:49:41 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/29 13:58:25 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ int		ft_strstr(char *str, char to_find)
 	while (str[i])
 	{
 		if (str[i] == to_find)
-		{
 			return (i);
-		}
 		i++;
 	}
 	return (-1);
@@ -76,10 +74,9 @@ int		verif_base(char *base)
 	while (base[i])
 	{
 		if (base[i] >= 9 && base[i] <= 14)
-		{
-			if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
-				return (0);
-		}
+			return (0);
+		if (base[i] == '+' || base[i] == '-' || base[i] == ' ')
+			return (0);
 		j = i + 1;
 		while (base[j])
 		{

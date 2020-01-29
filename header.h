@@ -16,5 +16,6 @@ char	*ft_strdup(const char *s1);
 
 int		atoi_base(char *str, char *base);
 int		ft_atoi_base(char *str, char *base);
+int		ft_strstr(char	*str, char c);
 
 #endif
