@@ -1,7 +1,7 @@
 SRCS = ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
-SRCB = ft_atoi_base_bonus.s ft_strstr.s
+SRCB = ft_atoi_base_bonus.s ft_strstr.s ft_list_push_front_bonus.s
 SRCC = main.c 
-SRCM = bonus.c ft_atoi_base.c
+SRCM = bonus.c ft_atoi_base.c list.c
 
 OBJS = ${SRCS:.s=.o}
 OBJB = ${SRCB:.s=.o}
