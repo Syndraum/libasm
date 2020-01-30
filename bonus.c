@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/29 22:35:03 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/30 15:47:30 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,30 @@ int	test_list_sort(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
+void	no_free(void *data)
+{
+	(void)data;
+}
+
+int	del_all(char *s1, char *s2)
+{
+	(void)s1;
+	(void)s2;
+	return 0;
+}
+
+int	test_list_remove_if(int argc, char *argv[])
+{
+	t_list *list = NULL;
+
+	int i = 1;
+	while (++i < argc)
+		list_push_front(&list , strdup(argv[i]));
+	print_list(list);
+	ft_list_remove_if(&list, "f", del_all, free);
+	print_list(list);
+	return (EXIT_SUCCESS);
+}
 
 int main(int argc, char *argv[])
 {
@@ -98,6 +122,8 @@ int main(int argc, char *argv[])
 		test_list_size(argc, argv);
 	else if (strcmp(argv[1], "list_sort") == 0)
 		test_list_sort(argc, argv);
+	else if (strcmp(argv[1], "list_remove_if") == 0)
+		test_list_remove_if(argc, argv);
 	else
 		printf("Error\nFunction unknow");
 	return(EXIT_SUCCESS);
