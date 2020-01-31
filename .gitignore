@@ -1,4 +1,4 @@
 *.out
 *.o
-*.txt
+test_write.txt
 *.a
