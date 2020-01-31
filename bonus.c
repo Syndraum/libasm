@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/30 15:47:30 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/30 21:49:26 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	test_atoi_base(int argc, char *argv[])
 {
 	if (argc <= 3)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	printf("atoi_base :\t%d\n", atoi_base(argv[2], argv[3]));
@@ -29,7 +29,7 @@ int	test_strstr(int argc, char *argv[])
 {
 	if (argc <= 3)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	printf("strstr :\t%d\n", ft_strstr(argv[2], argv[3][0]));
@@ -43,7 +43,7 @@ int	test_list_push_front(int argc, char *argv[])
 
 	if (argc <= 2)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	int i = 1;
@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
 {
 	if (argc <= 1)
 	{
-		printf("Error\nNo function\n");
+		printf(ERROR_ARG);
 		return (EXIT_SUCCESS);
 	}
 	if (strcmp(argv[1], "ft_atoi_base") == 0)
@@ -125,6 +125,6 @@ int main(int argc, char *argv[])
 	else if (strcmp(argv[1], "list_remove_if") == 0)
 		test_list_remove_if(argc, argv);
 	else
-		printf("Error\nFunction unknow");
+		printf(ERROR_FUNC_UNKNOW);
 	return(EXIT_SUCCESS);
 }

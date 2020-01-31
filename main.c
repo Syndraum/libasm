@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 11:59:48 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/29 12:00:02 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/31 13:55:35 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 int	test_strlen(int argc, char *argv[])
 {
-	char * str;
-		if (argc <= 2)
-		{
-			printf("Error\nNeed argument\n");
-			return (EXIT_SUCCESS);
-		}
-		if (strcmp(argv[2], "(null)") == 0)
-			printf("ft_strlen\t%lu\nstrlen\t\t%lu\n", ft_strlen(str), strlen(str));
-		else
-			printf("ft_strlen\t%lu\nstrlen\t\t%lu\n", ft_strlen(argv[2]), strlen(argv[2]));
+	if (argc <= 2)
+	{
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
+	}
+	printf("ft_strlen\t%lu\nstrlen\t\t%lu\n", ft_strlen(argv[2]), strlen(argv[2]));
+	return (EXIT_SUCCESS);
 }
 
 int	test_strcpy(int argc, char *argv[])
@@ -34,11 +30,13 @@ int	test_strcpy(int argc, char *argv[])
 
 	if (argc <= 3)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
-	printf("ft_strcpy\t|%s|\nstrcpy\t\t|%s|\n", ft_strcpy(str1, argv[3]), strcpy(str2,argv[3]));
-	printf("src : %s\n", str1);
+	printf("strcpy\t\t|%s|\nft_strcpy\t|%s|\n", strcpy(str1, argv[3]), ft_strcpy(str2,argv[3]));
+	if (strlen(argv[3]) != 0)
+		argv[3][0] = '_';
+	printf("src : %s\n", str2);
 	free(str1);
 	free(str2);
 	return (EXIT_SUCCESS);
@@ -48,7 +46,7 @@ int	test_strcmp(int argc, char *argv[])
 {
 	if (argc <= 3)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	printf("ft_strcmp\t|%d|\nstrcmp\t\t|%d|\n", ft_strcmp(argv[2], argv[3]), strcmp(argv[2],argv[3]));
@@ -58,21 +56,20 @@ int	test_strcmp(int argc, char *argv[])
 int test_write(int argc, char *argv[])
 {
 	int fd;
-	char * lol = NULL;
 
 	if (argc <= 4)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	if ((fd = atoi(argv[2])) == 3)
-		fd = open("test.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
+		fd = open("test_write.txt", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 	printf("write\t : ");
 	fflush(stdout);
-	int ret_o = write(fd, lol, atoi(argv[4]));
+	int ret_o = write(fd, argv[3], atoi(argv[4]));
 	printf("\t| ret = %d\nft_write : ", ret_o);
 	fflush(stdout);
-	int ret_m = ft_write(fd, lol, atoi(argv[4]));
+	int ret_m = ft_write(fd, argv[3], atoi(argv[4]));
 	printf("\t| ret = %d\n", ret_m);
 	return (EXIT_SUCCESS);
 }
@@ -86,7 +83,7 @@ int test_read(int argc, char *argv[])
 
 	if (argc <= 4)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
 	if ((fd1 = atoi(argv[2])) == 3 || (fd2 = atoi(argv[2])) == 3)
@@ -110,22 +107,20 @@ int test_read(int argc, char *argv[])
 
 int	test_strdup(int argc, char *argv[])
 {
-	char* str1;
-	char* str2;
+	char *ret1;
+	char *ret2;
 
 	if (argc <= 2)
 	{
-		printf("Error\nNeed argument\n");
+		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
-	str1 = strdup(argv[2]);
-	str2 = strdup(argv[2]);
-	printf("strdup\t\t: %s\n", strdup(str1));
-	printf("ft_strdup\t: %s\n", ft_strdup(str2));
-	*(argv[2]) = '8';
-	printf("Modified arg\t: %s", str2);
-	free(str1);
-	free(str2);
+	printf("strdup\t\t: %s\n", ret1 = strdup(argv[2]));
+	printf("ft_strdup\t: %s\n", ret2 = ft_strdup(argv[2]));
+	argv[2][0] = '8';
+	printf("Modified arg\t: %s\n", ret2);
+	free(ret1);
+	free(ret2);
 	return (EXIT_SUCCESS);
 }
 
@@ -133,22 +128,22 @@ int main(int argc, char *argv[])
 {
 	if (argc <= 1)
 	{
-		printf("Error\nNo function\n");
+		printf(ERROR_ARG);
 		return (EXIT_SUCCESS);
 	}
-	if (strcmp(argv[1], "ft_strlen") == 0)
+	if (strcmp(argv[1], "strlen") == 0)
 		test_strlen(argc, argv);
-	else if (strcmp(argv[1], "ft_strcpy") == 0)
+	else if (strcmp(argv[1], "strcpy") == 0)
 		test_strcpy(argc, argv);
-	else if (strcmp(argv[1], "ft_strcmp") == 0)
+	else if (strcmp(argv[1], "strcmp") == 0)
 		test_strcmp(argc, argv);
-	else if (strcmp(argv[1], "ft_write") == 0)
+	else if (strcmp(argv[1], "write") == 0)
 		test_write(argc, argv);
-	else if (strcmp(argv[1], "ft_read") == 0)
+	else if (strcmp(argv[1], "read") == 0)
 		test_read(argc, argv);
-	else if (strcmp(argv[1], "ft_strdup") == 0)
+	else if (strcmp(argv[1], "strdup") == 0)
 		test_strdup(argc, argv);
 	else
-		printf("Error\nFunction unknow");
+		printf(ERROR_FUNC_UNKNOW);
 	return(EXIT_SUCCESS);
 }

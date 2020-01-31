@@ -7,6 +7,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 
+# define ERROR_ARG "Error: No function selected\n"
+# define ERROR_FUNC_UNKNOW "Error: Function unknow\n"
+# define ERROR_NEED_ARG "Error: Need argument\n"
+
 size_t	ft_strlen(const char *s);
 char	*ft_strcpy(char * dst, const char * src);
 int		ft_strcmp(const char *s1, const char *s2);

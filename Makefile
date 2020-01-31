@@ -26,13 +26,17 @@ all:	${NAME}
 .c.o:
 	${CC} ${CFLAG} -c  $< -o ${<:.c=.o}
 
-${NAME}: ${OBJS}
+all: ${NAME}
+
+${NAME}: ${OBJS} header.h
 	ar rc ${NAME} ${OBJS}
 
-bonus: ${OBJS} ${OBJB}
+bonus: ${OBJS} ${OBJB} header.h bonus.h
 	ar rc ${NAME} ${OBJS} ${OBJB}
 
-test:	${NAME} ${OBJC}
+test: ${NAME_TEST}
+
+${NAME_TEST}:	${NAME} ${OBJC}
 	${RM} $(OBJM)
 	${CC} ${NAME} ${OBJC} -o ${NAME_TEST}
 

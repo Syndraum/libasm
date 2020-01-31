@@ -1,8 +1,10 @@
 global		_ft_strcmp
 _ft_strcmp:
 .while:
-	mov		al, [rdi]
-	mov		dl, [rsi]
+	mov		rax, 0		;init
+	mov		rdx, 0
+	mov		al, [rdi]	;str1[]
+	mov		dl, [rsi]	;str2[]
 	cmp		al, 0
 	jz		.exit
 	cmp		dl, 0
@@ -13,15 +15,5 @@ _ft_strcmp:
 	inc		rsi
 	jmp		.while
 .exit:
-	cmp		al, dl
-	je		.egal
-	ja		.sup
-	mov		rax, -1
-	jmp		.return
-.egal:
-	mov		rax, 0
-	jmp		.return
-.sup:
-	mov		rax, 1
-.return:
-	ret 
+	sub		rax, rdx
+	ret
