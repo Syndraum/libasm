@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/30 21:49:26 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:41:24 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 int	test_atoi_base(int argc, char *argv[])
 {
+	char	*str = strdup(argv[2]);
+
 	if (argc <= 3)
 	{
 		printf(ERROR_NEED_ARG);
 		return (EXIT_SUCCESS);
 	}
-	printf("atoi_base :\t%d\n", atoi_base(argv[2], argv[3]));
-	printf("ft_atoi_base :\t%d\n", ft_atoi_base(argv[2], argv[3]));
+	printf("atoi_base :\t%d\n", atoi_base(str, argv[3]));
+	printf("ft_atoi_base :\t%d\n", ft_atoi_base(str, argv[3]));
+	free(str);
 	return (EXIT_SUCCESS);
 }
 
@@ -41,11 +44,6 @@ int	test_list_push_front(int argc, char *argv[])
 	t_list *elmt1 = NULL;
 	t_list *elmt2 = NULL;
 
-	if (argc <= 2)
-	{
-		printf(ERROR_NEED_ARG);
-		return (EXIT_SUCCESS);
-	}
 	int i = 1;
 	while (++i < argc)
 	{
@@ -76,8 +74,10 @@ int	test_list_sort(int argc, char *argv[])
 	int i = 1;
 	while (++i < argc)
 		list_push_front(&list , argv[i]);
+	printf("Original\t: ");
 	print_list(list);
 	ft_list_sort(&list, ft_strcmp);
+	printf("Sort list\t: ");
 	print_list(list);
 	return (EXIT_SUCCESS);
 }
@@ -94,15 +94,30 @@ int	del_all(char *s1, char *s2)
 	return 0;
 }
 
+int	del_none(char *s1, char *s2)
+{
+	(void)s1;
+	(void)s2;
+	return -1;
+}
+
 int	test_list_remove_if(int argc, char *argv[])
 {
 	t_list *list = NULL;
 
-	int i = 1;
+	if (argc <= 2)
+	{
+		printf(ERROR_NEED_ARG);
+		return (EXIT_SUCCESS);
+	}
+	int i = 2;
 	while (++i < argc)
 		list_push_front(&list , strdup(argv[i]));
+	printf("data_ref : %s\n", argv[2]);
+	printf("original\t: ");
 	print_list(list);
-	ft_list_remove_if(&list, "f", del_all, free);
+	ft_list_remove_if(&list, argv[2], strcmp, free);
+	printf("remove if\t: ");
 	print_list(list);
 	return (EXIT_SUCCESS);
 }
@@ -114,7 +129,7 @@ int main(int argc, char *argv[])
 		printf(ERROR_ARG);
 		return (EXIT_SUCCESS);
 	}
-	if (strcmp(argv[1], "ft_atoi_base") == 0)
+	if (strcmp(argv[1], "atoi_base") == 0)
 		test_atoi_base(argc, argv);
 	else if (strcmp(argv[1], "list_push_front") == 0)
 		test_list_push_front(argc, argv);

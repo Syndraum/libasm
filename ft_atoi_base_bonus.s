@@ -15,11 +15,11 @@ _ft_atoi_base:
 	cmp		byte[r13], 0
 	je		.end_while
 .if:
-	cmp		byte[r13], 32
+	cmp		byte[r13], ' '
 	je		.error
-	cmp		byte[r13], 45
+	cmp		byte[r13], '+'
 	je		.error
-	cmp		byte[r13], 43
+	cmp		byte[r13], '-'
 	je		.error
 	cmp		byte[r13], 9
 	jl		.end_if
@@ -41,7 +41,7 @@ _ft_atoi_base:
 	mov		rdi, r14	;number *
 	mov		r14, 1		;signe
 	mov		rsi, 0		;result
-.wspace:
+.wspace:				;whitespace ? continue : signe
 	cmp		byte[rdi], 0
 	je		.end
 	cmp		byte[rdi], 9
@@ -54,7 +54,7 @@ _ft_atoi_base:
 	inc		rdi
 	jmp		.wspace
 
-.signe:
+.signe:		;signe ? 
 	cmp		byte[rdi], 0
 	je		.end
 	cmp		byte[rdi], '-'
@@ -63,7 +63,7 @@ _ft_atoi_base:
 	je		.plus
 	jmp		.number
 .minus:
-	neg		r14
+	neg		r14		;invert sign
 .plus:
 	inc		rdi
 	jmp		.signe
@@ -81,8 +81,8 @@ _ft_atoi_base:
 	pop		rdi
 	cmp		al, -1
 	je		.end
-	imul	rsi, r12
-	add		rsi, rax
+	imul	rsi, r12	;number*base
+	add		rsi, rax	;number+index
 	inc		rdi
 	jmp		.number
 
@@ -92,6 +92,6 @@ _ft_atoi_base:
 	ret
 
 .error:
-	mov rax, -42
+	mov rax, 0
 	ret
 
