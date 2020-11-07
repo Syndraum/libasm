@@ -1,5 +1,5 @@
-global		_ft_strcmp
-_ft_strcmp:
+global		ft_strcmp
+ft_strcmp:
 .while:
 	mov		rax, 0		;init
 	mov		rdx, 0

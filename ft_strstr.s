@@ -1,5 +1,5 @@
-global		_ft_strstr
-_ft_strstr:
+global		ft_strstr
+ft_strstr:
 	mov		rax, rdi
 .while:
 	cmp		byte[rax], 0

@@ -1,13 +1,13 @@
-global		_ft_list_push_front
-extern		_malloc
-_ft_list_push_front:
+global		ft_list_push_front
+extern		malloc
+ft_list_push_front:
 	mov		rax, 0
 	cmp		rdi, 0
 	je		.exit
 	push	rdi
 	push	rsi
 	mov		rdi, 16
-	call	_malloc
+	call	malloc
 	pop		rsi		;data
 	pop		rdi		;pointer **list
 	je		.exit

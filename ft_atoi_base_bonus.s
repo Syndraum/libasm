@@ -1,12 +1,12 @@
-global		_ft_atoi_base
-extern		_ft_strlen
-extern		_ft_strstr
+global		ft_atoi_base
+extern		ft_strlen
+extern		ft_strstr
 section		.text
-_ft_atoi_base:
+ft_atoi_base:
 	mov		r14, rdi	;number
 	mov		r15, rsi	;base
 	mov		rdi, rsi
-	call	_ft_strlen
+	call	ft_strlen
 	mov		r12, rax	;len base
 	cmp		rax, 2		;len base < 2
 	jl		.error
@@ -31,7 +31,7 @@ _ft_atoi_base:
 	mov		rdi, r13
 	inc		rdi
 	mov		rax, 0
-	call	_ft_strstr
+	call	ft_strstr
 	cmp		al, -1
 	jne		.error
 	inc		r13
@@ -76,7 +76,7 @@ _ft_atoi_base:
 	mov		rsi, 0
 	mov		sil, byte[rdi]
 	mov		rdi, r15
-	call	_ft_strstr
+	call	ft_strstr
 	pop		rsi
 	pop		rdi
 	cmp		al, -1

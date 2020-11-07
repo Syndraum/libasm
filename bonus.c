@@ -6,7 +6,7 @@
 /*   By: roalvare <roalvare@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 12:00:12 by roalvare          #+#    #+#             */
-/*   Updated: 2020/01/31 14:41:24 by roalvare         ###   ########.fr       */
+/*   Updated: 2020/10/09 21:03:28 by roalvare         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	test_list_sort(int argc, char *argv[])
 	return (EXIT_SUCCESS);
 }
 
-void	no_free(void *data)
+void	nofree(void *data)
 {
 	(void)data;
 }

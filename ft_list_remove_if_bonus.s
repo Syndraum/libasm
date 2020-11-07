@@ -1,7 +1,7 @@
-global		_ft_list_remove_if
-extern		_free
+global		ft_list_remove_if
+extern		free
 extern		_print_list
-_ft_list_remove_if:
+ft_list_remove_if:
 	mov		r15, rdi	;begin_list
 	mov		r14, rsi	;data_ref
 	mov		r13, rdx	;cmp
@@ -25,7 +25,7 @@ _ft_list_remove_if:
 	mov		rdi, [rbx]
 	call	r12			;free_data
 	mov		rdi, rbx
-	call	_free		;free_elmt
+	call	free		;free_elmt
 	pop		rdi			;pop prec
 	jmp		.next
 .skip:

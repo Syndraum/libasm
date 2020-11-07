@@ -1,11 +1,11 @@
-global		_ft_list_sort
-extern		_ft_list_size
-_ft_list_sort:
+global		ft_list_sort
+extern		ft_list_size
+ft_list_sort:
 	mov		r15, rdi	;begin
 	mov		r14, rsi	;function
 	mov		r13, [r15]	;first_elemt
 	mov		rdi, r13
-	call	_ft_list_size
+	call	ft_list_size
 	mov		r12, rax	;size
 .while:
 	cmp		r12, 0

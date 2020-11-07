@@ -14,14 +14,14 @@ NAME_TEST = libasm.out
 
 RM	= rm -f
 
-CC = gcc
+CC = clang
 
 CFLAG = -Wall -Wextra -Werror
 
 all:	${NAME}
 
 .s.o:
-	nasm -fmacho64 $<
+	nasm -felf64 $<
 
 .c.o:
 	${CC} ${CFLAG} -c  $< -o ${<:.c=.o}
@@ -38,11 +38,11 @@ test: ${NAME_TEST}
 
 ${NAME_TEST}:	${NAME} ${OBJC}
 	${RM} $(OBJM)
-	${CC} ${NAME} ${OBJC} -o ${NAME_TEST}
+	${CC} -o ${NAME_TEST} ${OBJC} ${NAME}
 
 more:	bonus ${OBJM}
 	${RM} $(OBJC)
-	${CC} ${NAME} ${OBJM} -o ${NAME_TEST}
+	${CC} -o ${NAME_TEST} ${OBJM} ${NAME}
 
 clean :
 	${RM} ${OBJS} ${OBJC} ${OBJB} ${OBJM}

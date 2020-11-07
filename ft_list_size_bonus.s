@@ -1,5 +1,5 @@
-global _ft_list_size
-_ft_list_size:
+global ft_list_size
+ft_list_size:
 	mov		rax, 0
 .while:
 	cmp		rdi, 0
